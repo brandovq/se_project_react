@@ -1,8 +1,29 @@
 .cards__list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 0;
   padding: 0;
   list-style-type: none;
-  gap: 21px;
+  gap: 20px;
+  width: 100%;
+  /* Adding grid-template-columns, width: 100% and width: 100% on .Card in ItemCard.css. It was casuing imaginary space on right of container card__list*/
+}
+
+@media screen and (max-width: 1200px) {
+  .cards__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cards__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .cards__list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
