@@ -1,11 +1,19 @@
 @import url("./vendor/normalize.css");
 
 @font-face {
-	font-family: "Cabinet Grotesk";
-	src: url("./components/fonts/CabinetGrotesk-Bold.otf") format("opentype");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
+  font-family: "Cabinet Grotesk";
+  src: url("./components/fonts/CabinetGrotesk-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("./components/fonts/CabinetGrotesk-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 html,
@@ -14,5 +22,5 @@ button,
 input,
 textarea,
 select {
-	font-family: "Cabinet Grotesk", "Arial", sans-serif;
+  font-family: "Cabinet Grotesk", "Arial", sans-serif;
 }

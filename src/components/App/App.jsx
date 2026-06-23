@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 
@@ -30,6 +31,7 @@ function App() {
         <Header handleAddClick={handleAddClick} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
       </div>
+      <Footer />
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
