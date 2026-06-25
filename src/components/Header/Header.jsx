@@ -2,11 +2,18 @@ import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
 
-function Header({ handleAddClick }) {
+function Header({ handleAddClick, weatherData }) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
+  // The code above is what generates the current date in the format "Month Day" (e.g., "June 5")
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="WTWR logo" />
-      <p className="header__date-and-location">DATE, LOCATION</p>
+      <p className="header__date-and-location">
+        {currentDate}, {weatherData.city}
+      </p>
       <button
         onClick={handleAddClick}
         type="button"

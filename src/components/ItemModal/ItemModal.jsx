@@ -3,9 +3,22 @@ import modalCloseButton from "../../assets/modal-close-btn.svg";
 
 function ItemModal({ activeModal, onClose, card }) {
   return (
-    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
+    <div
+      className={`modal ${activeModal === "preview" && "modal_opened"}`}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      {/* Above I added on MouseDown Overlay checks */}
       <div className="modal__content modal__content_type_image">
-        <button onClick={onClose} type="button" className="modal__close" aria-label="Close">
+        <button
+          onClick={onClose}
+          type="button"
+          className="modal__close"
+          aria-label="Close"
+        >
           <img src={modalCloseButton} alt="" aria-hidden="true" />
         </button>
         <img src={card.link} alt={card.name} className="modal__image" />

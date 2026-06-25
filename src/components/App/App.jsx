@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
+import { coordinates, APIkey } from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 
 function App() {
-  const [weatherData, setWeatherData] = useState({ type: "cold" });
+  const [weatherData, setWeatherData] = useState({
+    type: "",
+    temp: { F: 999, city: "" },
+  });
   const [activeModal, setActiveModal] = useState("preview");
   const [selectedCard, setSelectedCard] = useState({});
 
@@ -25,10 +30,36 @@ function App() {
     setActiveModal("");
   };
 
+  useEffect(() => {
+    getWeather(coordinates, APIkey)
+      .then((data) => {
+        const filteredData = filterWeatherData(data);
+        setWeatherData(filteredData);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    if (activeModal) {
+      window.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [activeModal]);
+  // Added this useEffect in App.jsx to listen for Escape. Also added onMouseDown overlay checks in ModalWithForm.jsx and ItemModal.jsx
+
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} />
+        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
       </div>
       <Footer />
