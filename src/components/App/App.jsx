@@ -14,7 +14,8 @@ function App() {
     type: "",
     temp: { F: 999, city: "" },
   });
-  const [activeModal, setActiveModal] = useState("preview");
+  const [activeModal, setActiveModal] = useState("");
+  // If I want to see a previw of a modal it'll show up by adding preview inside the quotes above
   const [selectedCard, setSelectedCard] = useState({});
 
   const handleCardClick = (card) => {
