@@ -1,9 +1,8 @@
 import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
 
-function Main({ weatherData, handleCardClick }) {
+function Main({ weatherData, handleCardClick, clothingItems }) {
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -14,7 +13,7 @@ function Main({ weatherData, handleCardClick }) {
         {/* To render the list of items remember that you use a ul */}
         <ul className="cards__list">
           {/* to escape back to javascript we use the curly braces below for defaultClothingItems and I used the map function to iterate over each item in the array. And 'item' in the parenthesis after map, respresents each item in teh array   */}
-          {defaultClothingItems
+          {clothingItems
             .filter((item) => {
               return item.weather === weatherData.type;
             })

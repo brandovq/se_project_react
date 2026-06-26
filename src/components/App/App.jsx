@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 
 import "./App.css";
-import { coordinates, apiKey, weatherTypes } from "../../utils/constants.js";
+import {
+  coordinates,
+  apiKey,
+  weatherTypes,
+  defaultClothingItems,
+} from "../../utils/constants.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -14,6 +19,7 @@ function App() {
     type: "",
     temp: { F: 999, city: "" },
   });
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   // If I want to see a previw of a modal it'll show up by adding preview inside the quotes above
   const [selectedCard, setSelectedCard] = useState({});
@@ -61,13 +67,18 @@ function App() {
     <div className="page">
       <div className="page__content">
         <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Main
+          weatherData={weatherData}
+          handleCardClick={handleCardClick}
+          clothingItems={clothingItems}
+        />
       </div>
       <Footer />
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        name="add-garment"
+        isOpen={activeModal === "add-garment"}
         onClose={closeActiveModal}
       >
         <label htmlFor="name" className="modal__label">
@@ -81,9 +92,9 @@ function App() {
         </label>
 
         <label htmlFor="imageUrl" className="modal__label">
-          Image{" "}
+          Image URL{" "}
           <input
-            type="text"
+            type="url"
             className="modal__input"
             id="imageUrl"
             placeholder="Image URL"
@@ -134,7 +145,7 @@ function App() {
         </fieldset>
       </ModalWithForm>
       <ItemModal
-        activeModal={activeModal}
+        isOpen={activeModal === "preview"}
         card={selectedCard}
         onClose={closeActiveModal}
       />

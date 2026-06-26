@@ -1,10 +1,10 @@
 import "./ItemModal.css";
 import modalCloseButton from "../../assets/modal-close-btn.svg";
 
-function ItemModal({ activeModal, onClose, card }) {
+function ItemModal({ isOpen, onClose, card }) {
   return (
     <div
-      className={`modal ${activeModal === "preview" && "modal_opened"}`}
+      className={`modal ${isOpen ? "modal_opened" : ""}`}
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
           onClose();
