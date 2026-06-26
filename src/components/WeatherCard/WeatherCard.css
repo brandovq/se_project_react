@@ -21,3 +21,18 @@
   object-position: right top;
   width: 100%;
 }
+
+@media screen and (max-width: 767px) {
+  .weather-card {
+    width: 100%;
+    height: 80px;
+    border-radius: 16px;
+  }
+
+  .weather-card__temp {
+    font-size: 36px;
+    line-height: 1;
+    left: 16px;
+    top: 16px;
+  }
+}

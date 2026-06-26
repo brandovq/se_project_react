@@ -154,8 +154,19 @@
 }
 
 @media screen and (max-width: 767px) {
+  .modal_type_form {
+    align-items: flex-end;
+  }
+
   .modal__content {
+    width: 100%;
+    max-width: none;
     min-height: auto;
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding: 16px;
   }
 
   .modal__title,
@@ -166,9 +177,34 @@
     font-size: 16px;
   }
 
+  .modal__title {
+    margin: 0 0 27px;
+    font-size: 20px;
+  }
+
+  .modal__label_type_radio {
+    margin-bottom: 8px;
+  }
+
+  .modal__close_type_form {
+    top: 12px;
+    right: 12px;
+  }
+
+  /* .modal__label {
+    margin-bottom: 24px;
+  } */
+
+  .modal__radio-buttons {
+    margin-top: 4px;
+    margin-bottom: 30px;
+    gap: 10px;
+  }
+
   .modal__submit {
     height: 40px;
-    min-width: 124px;
+    width: 100%;
+    min-width: 0;
     font-size: 16px;
   }
 }

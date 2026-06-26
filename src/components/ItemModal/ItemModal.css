@@ -58,3 +58,17 @@
   height: 100%;
   object-fit: contain;
 }
+
+@media screen and (max-width: 767px) {
+  .modal__content_type_image {
+    width: min(343px, calc(100% - 32px));
+    max-width: 343px;
+    height: 463px;
+    border-radius: 12px;
+  }
+
+  .modal__close {
+    top: 16px;
+    right: 16px;
+  }
+}

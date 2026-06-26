@@ -1,7 +1,17 @@
 .page {
   background-color: #f3f3f3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .page__content {
   margin: 0 40px;
+  flex: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .page__content {
+    margin: 18px 16px 0px 16px;
+  }
 }

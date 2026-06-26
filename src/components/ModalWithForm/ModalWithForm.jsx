@@ -4,7 +4,7 @@ import modalCloseButton from "../../assets/modal-close-btn.svg";
 function ModalWithForm({ children, buttonText, title, activeModal, onClose }) {
   return (
     <div
-      className={`modal ${activeModal === "add-garment" && "modal_opened"}`}
+      className={`modal modal_type_form ${activeModal === "add-garment" && "modal_opened"}`}
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
           onClose();
