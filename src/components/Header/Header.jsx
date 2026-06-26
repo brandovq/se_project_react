@@ -40,7 +40,7 @@ function Header({ handleAddClick, weatherData }) {
         ) : (
           <img
             src={headerButtonLines}
-            alt=""
+            alt="Menu"
             aria-hidden="true"
             className="header__menu-icon"
           />
@@ -72,7 +72,7 @@ function Header({ handleAddClick, weatherData }) {
         >
           <img
             src={headerMobileClose}
-            alt=""
+            alt="Close"
             aria-hidden="true"
             className="header__mobile-close-icon"
           />
