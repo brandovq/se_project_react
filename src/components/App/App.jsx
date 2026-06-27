@@ -7,6 +7,7 @@ import {
   weatherTypes,
   defaultClothingItems,
 } from "../../utils/constants.js";
+import { useModalClose } from "../../hooks/useModalClose.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -37,6 +38,8 @@ function App() {
     setActiveModal("");
   };
 
+  useModalClose(!!activeModal, closeActiveModal);
+
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => {
@@ -45,23 +48,6 @@ function App() {
       })
       .catch(console.error);
   }, []);
-
-  useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
-        closeActiveModal();
-      }
-    };
-
-    if (activeModal) {
-      window.addEventListener("keydown", handleEscape);
-    }
-
-    return () => {
-      window.removeEventListener("keydown", handleEscape);
-    };
-  }, [activeModal]);
-  // Added this useEffect in App.jsx to listen for Escape. Also added onMouseDown overlay checks in ModalWithForm.jsx and ItemModal.jsx
 
   return (
     <div className="page">
