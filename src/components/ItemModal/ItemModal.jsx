@@ -1,9 +1,7 @@
 import "./ItemModal.css";
 import modalCloseButton from "../../assets/modal-close-btn.svg";
-import { useModalClose } from "../../hooks/useModalClose.js";
 
 function ItemModal({ isOpen, onClose, card }) {
-  useModalClose(isOpen, onClose);
   return (
     <div
       className={`modal ${isOpen ? "modal_opened" : ""}`}

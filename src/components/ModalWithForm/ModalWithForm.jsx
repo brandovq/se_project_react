@@ -1,9 +1,7 @@
 import "./ModalWithForm.css";
 import modalCloseButton from "../../assets/modal-close-btn.svg";
-import { useModalClose } from "../../hooks/useModalClose.js";
 
 function ModalWithForm({ children, buttonText, title, isOpen, onClose, name }) {
-  useModalClose(isOpen, onClose);
   return (
     <div
       className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}
