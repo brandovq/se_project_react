@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
@@ -47,13 +49,16 @@ function Header({ handleAddClick, weatherData }) {
         )}
       </button>
 
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        + Add clothes
-      </button>
+      <div className="header__actions">
+        <ToggleSwitch />
+        <button
+          onClick={handleAddClick}
+          type="button"
+          className="header__add-clothes-btn"
+        >
+          + Add clothes
+        </button>
+      </div>
       <div className="header__user-container">
         <p className="header__username">Terrence Tegegne</p>
         <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
