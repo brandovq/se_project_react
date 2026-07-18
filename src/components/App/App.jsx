@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import {
@@ -12,6 +13,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
@@ -20,6 +22,7 @@ function App() {
     type: "",
     temp: { F: "", city: "" },
   });
+  //  Replaced following code with code below: const [clothingItems] = useState(defaultClothingItems);
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -77,16 +80,26 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-            clothingItems={clothingItems}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
         </div>
         <Footer />
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           onClose={closeAllModals}
+          //  Removed thefollowing code and added code below: handleSubmit={(event) => event.preventDefault()}
           onAddItem={onAddItem}
         />
         <ItemModal
