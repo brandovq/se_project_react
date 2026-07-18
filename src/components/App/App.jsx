@@ -20,10 +20,11 @@ function App() {
     type: "",
     temp: { F: "", city: "" },
   });
-  const [clothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  // const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -38,11 +39,27 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const closeActiveModal = () => {
+  const onAddItem = (inputValues) => {
+    // call the fetch function
+    // .then() includes all the stuff below
+
+    const newCardData = {
+      name: inputValues.name,
+      link: inputValues.link,
+      weather: inputValues.weatherType,
+    };
+    // Don't use newCardData
+    // The ID will be included in the response data
+    setClothingItems([...clothingItems, newCardData]);
+    closeAllModals();
+    // .catch()
+  };
+
+  const closeAllModals = () => {
     setActiveModal("");
   };
 
-  useModalClose(!!activeModal, closeActiveModal);
+  useModalClose(!!activeModal, closeAllModals);
 
   useEffect(() => {
     getWeather(coordinates, apiKey)
@@ -69,13 +86,13 @@ function App() {
         <Footer />
         <AddItemModal
           isOpen={activeModal === "add-garment"}
-          onClose={closeActiveModal}
-          handleSubmit={(event) => event.preventDefault()}
+          onClose={closeAllModals}
+          onAddItem={onAddItem}
         />
         <ItemModal
           isOpen={activeModal === "preview"}
           card={selectedCard}
-          onClose={closeActiveModal}
+          onClose={closeAllModals}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>
