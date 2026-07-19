@@ -9,9 +9,10 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
+import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
-import { getItems } from "../../utils/api.js";
+import { getItems, addItem, removeItem } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -42,19 +45,42 @@ function App() {
   };
 
   const onAddItem = (inputValues) => {
-    // call the fetch function
-    // .then() includes all the stuff below
-
     const newCardData = {
       name: inputValues.name,
-      link: inputValues.link,
-      weather: inputValues.weatherType,
+      imageUrl: inputValues.imageUrl,
+      weather: inputValues.weather,
     };
-    // Don't use newCardData
-    // The ID will be included in the response data
-    setClothingItems([...clothingItems, newCardData]);
-    closeAllModals();
-    // .catch()
+
+    addItem(newCardData)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        closeAllModals();
+      })
+      .catch(console.error);
+  };
+
+  const deleteItemHandler = (itemId) => {
+    setItemToDelete(itemId);
+    setIsDeleteConfirmOpen(true);
+    setActiveModal("");
+  };
+
+  const confirmDelete = () => {
+    removeItem(itemToDelete)
+      .then(() => {
+        setClothingItems(
+          clothingItems.filter((item) => item._id !== itemToDelete),
+        );
+        closeAllModals();
+        setIsDeleteConfirmOpen(false);
+        setItemToDelete(null);
+      })
+      .catch(console.error);
+  };
+
+  const cancelDelete = () => {
+    setIsDeleteConfirmOpen(false);
+    setItemToDelete(null);
   };
 
   const closeAllModals = () => {
@@ -73,7 +99,7 @@ function App() {
 
     getItems()
       .then((data) => {
-        setClothingItems(data);
+        setClothingItems(data.reverse());
       })
       .catch(console.error);
   }, []);
@@ -120,6 +146,12 @@ function App() {
           isOpen={activeModal === "preview"}
           card={selectedCard}
           onClose={closeAllModals}
+          onDelete={deleteItemHandler}
+        />
+        <ConfirmDeleteModal
+          isOpen={isDeleteConfirmOpen}
+          onConfirm={confirmDelete}
+          onCancel={cancelDelete}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

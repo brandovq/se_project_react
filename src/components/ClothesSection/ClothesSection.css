@@ -5,6 +5,36 @@
 
 .clothes-section__row {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.clothes-section__title {
+  margin: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+  color: #000;
+}
+
+.clothes-section__add-btn {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.clothes-section__add-btn:hover {
+  opacity: 0.7;
 }
 
 .clothes-section__items {
