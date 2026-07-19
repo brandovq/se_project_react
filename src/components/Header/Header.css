@@ -92,6 +92,11 @@
   margin: 0;
 }
 
+.header__nav-link {
+  text-decoration: none;
+  color: black;
+}
+
 .header__menu-button {
   display: none;
 }
@@ -108,9 +113,8 @@
 
 @media screen and (max-width: 767px) {
   .header {
-    flex-wrap: wrap;
-    row-gap: 24px;
     padding: 18px 0 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   }
 
   .header__logo {
@@ -120,11 +124,8 @@
   }
 
   .header__date-and-location {
-    order: 3;
-    width: 100%;
-    font-size: 20px;
+    font-size: 14px;
     line-height: 1;
-    font-weight: 700;
   }
 
   .header__add-clothes-btn,

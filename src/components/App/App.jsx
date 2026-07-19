@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import {
-  coordinates,
-  apiKey,
-  defaultClothingItems,
-} from "../../utils/constants.js";
+import { coordinates, apiKey } from "../../utils/constants.js";
 import { useModalClose } from "../../hooks/useModalClose.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -15,19 +11,22 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
+import { getItems } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: "", city: "" },
+    temp: { F: "", C: "" },
+    city: "",
+    condition: "",
+    isDay: true,
   });
-  //  Replaced following code with code below: const [clothingItems] = useState(defaultClothingItems);
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+
+  const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  // const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -71,6 +70,12 @@ function App() {
         setWeatherData(filteredData);
       })
       .catch(console.error);
+
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   }, []);
 
   return (
@@ -92,7 +97,16 @@ function App() {
               }
             />
 
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  weatherData={weatherData}
+                  onCardClick={handleCardClick}
+                />
+              }
+            />
           </Routes>
         </div>
         <Footer />

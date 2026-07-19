@@ -1,0 +1,29 @@
+.clothes-section {
+  padding: 63px 40px 81px 116px;
+  flex-grow: 1;
+}
+
+.clothes-section__row {
+  display: flex;
+}
+
+.clothes-section__items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 0 171px;
+  padding: 0;
+  list-style-type: none;
+  gap: 20px;
+  width: 100%;
+  /* Adding grid-template-columns, width: 100% and width: 100% on .Card in ItemCard.css. It was casuing imaginary space on right of container card__list*/
+}
+
+@media screen and (max-width: 768px) {
+  .clothes-section {
+    padding: 24px 16px;
+  }
+
+  .clothes-section__items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

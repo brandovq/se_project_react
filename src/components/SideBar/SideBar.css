@@ -1,0 +1,27 @@
+.sidebar__user-container {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 16px;
+  margin-top: 47px;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    padding-bottom: 24px;
+  }
+
+  .sidebar__user-container {
+    flex-direction: row-reverse;
+    margin-top: 24px;
+  }
+}
+.sidebar__username {
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.sidebar__avatar {
+  height: 56px;
+}
