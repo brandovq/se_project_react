@@ -61,6 +61,13 @@
   margin-right: 24px;
 }
 
+.header__logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 .header__date-and-location {
   margin: 0;
 }
