@@ -44,7 +44,7 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const onAddItem = (inputValues) => {
+  const handleAddItem = (inputValues) => {
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
@@ -130,6 +130,7 @@ function App() {
                   clothingItems={clothingItems}
                   weatherData={weatherData}
                   onCardClick={handleCardClick}
+                  onAddClick={handleAddClick}
                 />
               }
             />
@@ -139,8 +140,7 @@ function App() {
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           onClose={closeAllModals}
-          //  Removed thefollowing code and added code below: handleSubmit={(event) => event.preventDefault()}
-          onAddItem={onAddItem}
+          onAddItem={handleAddItem}
         />
         <ItemModal
           isOpen={activeModal === "preview"}
