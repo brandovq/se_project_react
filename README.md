@@ -62,49 +62,54 @@ Built with React and Vite for optimal performance and developer experience, WTWR
 
 4. **Start the development environment**
 
-   In one terminal, start the Vite development server:
+   In one terminal, start the Vite development server by entering the following commands in seperate terminal in your main project's directory:
 
-   ```bash
-   npm run dev
-   ```
+Enter this in Terminal 1 (frontend server):
 
-   In another terminal, start the JSON Server:
+```
 
-   ```bash
-   json-server --watch db.json --port 3001
-   ```
+npm run dev
+
+```
+
+In another terminal, start the JSON Server (backend server):
+
+```
+json-server --watch db.json --id _id --port 3001
+
+```
 
 ## 📁 Project Structure (Quick short overview)
 
-```
 src/
-├── components/          # React components
-│   ├── App/            # Main application component
-│   ├── Header/         # Navigation and title
-│   ├── Main/           # Primary content area
-│   ├── WeatherCard/    # Weather display component
-│   ├── ItemCard/       # Individual clothing item card
-│   ├── ClothesSection/ # Clothing collection display
-│   ├── Profile/        # User profile and wardrobe management
-│   ├── Modals/         # Reusable modal components
-│   │   ├── AddItemModal/
-│   │   ├── ItemModal/
-│   │   ├── ConfirmDeleteModal/
-│   │   └── ModalWithForm/
-│   ├── ToggleSwitch/   # Temperature unit toggle
-│   ├── Footer/         # Application footer
-│   └── SideBar/        # Profile sidebar
-├── hooks/              # Custom React hooks
-│   ├── useForm.js      # Form state management
-│   └── useModalClose.js # Modal lifecycle handling
-├── contexts/           # React Context API
-│   └── CurrentTemperatureUnitContext.jsx
-├── utils/              # Utility functions
-│   ├── api.js          # Backend API calls
-│   ├── weatherApi.js   # Weather API integration
-│   └── constants.js    # Application constants
-├── assets/             # Images and static media
-└── vendor/             # Third-party libraries
+├── components/ # React components
+│ ├── App/ # Main application component
+│ ├── Header/ # Navigation and title
+│ ├── Main/ # Primary content area
+│ ├── WeatherCard/ # Weather display component
+│ ├── ItemCard/ # Individual clothing item card
+│ ├── ClothesSection/ # Clothing collection display
+│ ├── Profile/ # User profile and wardrobe management
+│ ├── Modals/ # Reusable modal components
+│ │ ├── AddItemModal/
+│ │ ├── ItemModal/
+│ │ ├── ConfirmDeleteModal/
+│ │ └── ModalWithForm/
+│ ├── ToggleSwitch/ # Temperature unit toggle
+│ ├── Footer/ # Application footer
+│ └── SideBar/ # Profile sidebar
+├── hooks/ # Custom React hooks
+│ ├── useForm.js # Form state management
+│ └── useModalClose.js # Modal lifecycle handling
+├── contexts/ # React Context API
+│ └── CurrentTemperatureUnitContext.jsx
+├── utils/ # Utility functions
+│ ├── api.js # Backend API calls
+│ ├── weatherApi.js # Weather API integration
+│ └── constants.js # Application constants
+├── assets/ # Images and static media
+└── vendor/ # Third-party libraries
+
 ```
 
 ## 🚀 Scripts
@@ -159,7 +164,7 @@ The application utilizes React Context API and custom hooks to manage:
 
 ## 🔍 Design Reference
 
-The UI design is based on a comprehensive Figma prototype:
+The UI design is based on the Figma design below:
 
 - [View Design on Figma](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
 
@@ -181,3 +186,9 @@ Potential features for future iterations:
 - Integration with calendar for planned outfits
 - Machine learning for personalized recommendations
 - Cloud storage for wardrobe sync across devices
+
+```
+
+```
+
+```

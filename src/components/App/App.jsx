@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import { coordinates, apiKey } from "../../utils/constants.js";
+import { apiKey } from "../../utils/constants.js";
 import { useModalClose } from "../../hooks/useModalClose.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -90,12 +90,27 @@ function App() {
   useModalClose(!!activeModal, closeAllModals);
 
   useEffect(() => {
-    getWeather(coordinates, apiKey)
-      .then((data) => {
-        const filteredData = filterWeatherData(data);
-        setWeatherData(filteredData);
-      })
-      .catch(console.error);
+    if (!navigator.geolocation) {
+      console.error("Geolocation is not supported by this browser.");
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+        getWeather(coords, apiKey)
+          .then((data) => {
+            const filteredData = filterWeatherData(data);
+            setWeatherData(filteredData);
+          })
+          .catch(console.error);
+      },
+      (error) => {
+        console.error("Error getting geolocation:", error);
+      },
+    );
 
     getItems()
       .then((data) => {
