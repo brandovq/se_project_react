@@ -81,6 +81,7 @@ json-server --watch db.json --id _id --port 3001
 
 ## 📁 Project Structure (Quick short overview)
 
+```
 src/
 ├── components/ # React components
 │ ├── App/ # Main application component
@@ -109,7 +110,6 @@ src/
 │ └── constants.js # Application constants
 ├── assets/ # Images and static media
 └── vendor/ # Third-party libraries
-
 ```
 
 ## 🚀 Scripts
@@ -186,9 +186,3 @@ Potential features for future iterations:
 - Integration with calendar for planned outfits
 - Machine learning for personalized recommendations
 - Cloud storage for wardrobe sync across devices
-
-```
-
-```
-
-```
